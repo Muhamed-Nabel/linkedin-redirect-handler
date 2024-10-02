@@ -6,7 +6,9 @@
     const errorDescription = urlParams.get('error_description');
     const state = urlParams.get('state');
 
+    document.body.innerHTML = "<h2>Hello3.</h2>";
     if (authorizationCode) {
+        document.body.innerHTML = "<h2>authorizationCode.</h2>";
         // Redirect to your app with the authorization code
         window.location.href = `socialjobsapp://linkedin_redirect?code=${authorizationCode}&state=${state}`;
     } else if (error) {
