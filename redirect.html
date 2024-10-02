@@ -1,20 +1,35 @@
-<script>
-    // Extract the parameters from the query string
-    const urlParams = new URLSearchParams(window.location.search);
-    const authorizationCode = urlParams.get('code');
-    const error = urlParams.get('error');
-    const errorDescription = urlParams.get('error_description');
-    const state = urlParams.get('state');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+    <script>
+        // Ensure the DOM is fully loaded before running the script
+        document.addEventListener("DOMContentLoaded", function() {
+            // Extract the parameters from the query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const authorizationCode = urlParams.get('code');
+            const error = urlParams.get('error');
+            const errorDescription = urlParams.get('error_description');
+            const state = urlParams.get('state');
 
-    document.body.innerHTML = "<h2>Hello3.</h2>";
-    if (authorizationCode) {
-        document.body.innerHTML = "<h2>authorizationCode.</h2>";
-        // Redirect to your app with the authorization code
-        window.location.href = `socialjobsapp://linkedin_redirect?code=${authorizationCode}&state=${state}`;
-    } else if (error) {
-        // Display error message if LinkedIn returned an error
-        document.body.innerHTML = `<h2>Error: ${error}. Description: ${errorDescription}</h2>`;
-    } else {
-        document.body.innerHTML = "<h2>Error: Authorization code not found3.</h2>";
-    }
-</script>
+            document.body.innerHTML = "<h2>Hello3.</h2>";
+
+            if (authorizationCode) {
+                document.body.innerHTML = "<h2>Authorization Code Found.</h2>";
+                // Redirect to your app with the authorization code
+                window.location.href = `socialjobsapp://linkedin_redirect?code=${authorizationCode}&state=${state}`;
+            } else if (error) {
+                // Display error message if LinkedIn returned an error
+                document.body.innerHTML = `<h2>Error: ${error}. Description: ${errorDescription}</h2>`;
+            } else {
+                document.body.innerHTML = "<h2>Error: Authorization code not found3.</h2>";
+            }
+        });
+    </script>
+</body>
+</html>
